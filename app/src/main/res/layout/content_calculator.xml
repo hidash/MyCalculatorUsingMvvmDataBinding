@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="vm"
+            type="com.hid.mvvm.viewmodel.CalculatorViewModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/calculation_input"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:paddingBottom="26dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".view.CalculatorActivity"
+        tools:showIn="@layout/activity_calculator">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/xml_black_border"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/input1_amount"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@null"
+                android:hint="@string/input1"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="@={vm.input1}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/input_layout_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/xml_black_border"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_1">
+
+            <EditText
+                android:id="@+id/input2_amount"
+                android:layout_width="match_parent"
+                android:paddingLeft="@dimen/_10sdp"
+                android:paddingStart="@dimen/_10sdp"
+                android:layout_height="@dimen/_35sdp"
+                android:hint="@string/input2"
+                android:background="@null"
+                android:inputType="numberDecimal"
+                android:selectAllOnFocus="true"
+                android:text="@={vm.input2}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:id="@+id/layoutButton"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_layout_2">
+
+            <Button
+                android:id="@+id/buttonPlus"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_weight="1"
+                android:text="+"
+                android:onClick="@{() -> vm.calculateAdd()}"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                android:layout_height="@dimen/_50sdp">
+
+            </Button>
+            <Button
+                android:id="@+id/buttonMinus"
+                android:layout_width="@dimen/_50sdp"
+                android:text="-"
+                android:layout_weight="1"
+                android:textSize="@dimen/_18sdp"
+                android:onClick="@{() -> vm.calculateMinus()}"
+                android:textStyle="bold"
+                android:layout_height="@dimen/_50sdp">
+            </Button>
+            <Button
+                android:id="@+id/buttonMultiply"
+                android:layout_width="@dimen/_50sdp"
+                android:text="*"
+                android:layout_weight="1"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                android:onClick="@{() -> vm.calculateMultiply()}"
+                android:layout_height="@dimen/_50sdp">
+            </Button>
+            <Button
+                android:id="@+id/buttonDivision"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_weight="1"
+                android:text="/"
+                android:textSize="@dimen/_18sdp"
+                android:textStyle="bold"
+                android:onClick="@{() -> vm.calculateDivide()}"
+                android:layout_height="@dimen/_50sdp">
+            </Button>
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/calculation_output"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal"
+            android:paddingTop="16dp"
+            android:paddingBottom="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutButton">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/total_amount"
+                    style="@style/TextAppearance.AppCompat.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:text="@{vm.outputAmount}" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/output"
+                    android:textAlignment="center" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

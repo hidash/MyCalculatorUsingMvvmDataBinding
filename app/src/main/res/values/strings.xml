@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="action_settings">Settings</string>
+    <string name="check_label">Check</string>
+
+    <string name="output_value">%1$.02f</string>
+
+    <string name="action_cancel">Cancel</string>
+    <string name="input1">Input 1</string>
+    <string name="input2">Input 2</string>
+    <string name="output">Output</string>
+
+</resources>
